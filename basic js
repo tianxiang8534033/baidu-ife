@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>数字</title>
+	<style type="text/css">
+      #ul li{
+              display:inline-block;
+              background-color:#F00;
+              color:#000;
+              margin:4px;
+              padding:1px;
+            }
+	</style>  
+</head>
+<body>
+	<div>
+		<input id="inp"></input>
+		<button id="inleft">左侧入</button>&nbsp;
+		<button id="inright">右侧入</button>&nbsp;&nbsp;&nbsp;&nbsp;
+		<button id="outleft">左侧出</button>&nbsp;
+		<button id="outright">右侧出</button>
+	</div>
+	<ul id="ul"></ul>
+	<script type="text/javascript">
+    window.onload=function(){
+    	var inp=document.getElementById("inp");
+    	var inleft=document.getElementById("inleft");
+    	var inright=document.getElementById("inright");
+    	var outleft=document.getElementById("outleft");
+    	var outright=document.getElementById("outright");
+    	var ul=document.getElementById("ul");
+    	var arr=[];
+    	function leftin(){
+    		if(inp.value!==""&&!isNaN(inp.value) ){
+    			var num=inp.value;
+    			arr.push(num);
+    			var li=document.createElement("li");
+    			li.innerHTML=arr[arr.length-1];
+    			ul.insertBefore(li,ul.children[0]);
+    			inp.value="";
+    		}
+    	}
+    	function rightin(){
+            if(inp.value!==""&&!isNaN(inp.value) ){
+                var num=inp.value;
+                arr.push(num);
+                var li=document.createElement("li");
+                li.innerHTML=arr[arr.length-1];
+                ul.append(li);
+                inp.value="";
+            }
+        }
+        function  leftout(){
+            alert(ul.children[0].innerHTML);
+            arr.shift(arr[0]);
+            ul.removeChild(ul.children[0]);
+        }
+        function rightout(){
+            alert(ul.lastChild.innerHTML);
+            arr.shift(arr[0]);
+            ul.removeChild(ul.lastChild);
+        }
+        function run(){
+            inleft.onclick=function(){
+                leftin();
+            }
+            inright.onclick=function(){
+                rightin();
+            }
+            outleft.onclick=function(){
+                leftout();
+            }
+            outright.onclick=function(){
+                rightout();
+            }
+        }
+        run();
+    }
+
+
+	</script>
+</body>
+</html>
